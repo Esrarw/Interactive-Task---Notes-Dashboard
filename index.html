@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق المهام اليومية</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <h1>📋 قائمة المهام</h1>
+            <p class="subtitle">تنظيم المهام بكل بساطة</p>
+        </header>
+
+        <!-- Task Input Box -->
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="اكتبي مهمة جديدة هنا..." autocomplete="off">
+            <button id="addTaskBtn">إضافة ➕</button>
+        </div>
+<!-- Add this counter-box right above the list-section -->
+<div class="counter-box">
+    <span>المهام المتبقية: <strong id="pendingCount">0</strong></span>
+    <span>المكتملة: <strong id="completedCount">0</strong></span>
+</div>
+        <!-- Task List Area -->
+        <div class="list-section">
+            <ul id="taskList">
+                <!-- المهام حتظهر هنا لاحقاً -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

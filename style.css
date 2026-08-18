@@ -1,0 +1,137 @@
+/* RESET & BASE STYLES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    direction: rtl;
+    padding: 20px;
+}
+
+/* MAIN CONTAINER */
+.container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+}
+
+/* HEADER */
+.app-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.app-header h1 {
+    font-size: 1.6rem;
+    color: #1e293b;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+/* INPUT SECTION */
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-section input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-section input:focus {
+    border-color: #6366f1;
+}
+
+.input-section button {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.input-section button:hover {
+    background-color: #4f46e5;
+}
+
+/* TASK LIST */
+.list-section ul {
+    list-style: none;
+}
+/* TASK ITEM CARD STYLES */
+.task-item {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.task-item:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.task-text {
+    font-size: 0.95rem;
+    color: #334155;
+    cursor: pointer;
+}
+
+/* COMPLETED TASK STYLE */
+.task-item.completed {
+    background-color: #f1f5f9;
+    opacity: 0.75;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    background: #fee2e2;
+    color: #ef4444;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #fca5a5;
+    color: #b91c1c;
+}
