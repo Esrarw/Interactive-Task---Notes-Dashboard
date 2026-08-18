@@ -112,3 +112,19 @@ addTaskBtn.addEventListener('click', addTask);
 taskInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') addTask();
 });
+// Clear all tasks logic
+const clearAllBtn = document.getElementById('clearAllBtn');
+
+clearAllBtn.addEventListener('click', function() {
+    const allTasks = document.querySelectorAll('.task-item');
+    if (allTasks.length === 0) {
+        alert('القائمة فارغة بالفعل!');
+        return;
+    }
+
+    if (confirm('هل أنتِ متاكدة من حذف جميع المهام؟')) {
+        taskList.innerHTML = '';
+        localStorage.removeItem('user_tasks');
+        updateCounters();
+    }
+});
