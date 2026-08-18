@@ -165,3 +165,23 @@ body {
     border-color: #6366f1;
     font-weight: 600;
 }
+/* CLEAR ALL BUTTON STYLES */
+.clear-btn {
+    width: 100%;
+    margin-top: 15px;
+    background-color: #fff1f2;
+    color: #e11d48;
+    border: 1px dashed #fecdd3;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+    background-color: #ffe4e6;
+    border-color: #fda4af;
+    color: #be123c;
+}
