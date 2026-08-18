@@ -1,8 +1,12 @@
 const taskInput = document.getElementById('taskInput');
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskList = document.getElementById('taskList');
+const pendingCount = document.getElementById('pendingCount');
+const completedCount = document.getElementById('completedCount');
+const filterBtns = document.querySelectorAll('.filter-btn');
 
-// Load saved tasks from localStorage when page opens
+let currentFilter = 'all';
+
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 function createTaskElement(text, completed = false) {
@@ -14,18 +18,20 @@ function createTaskElement(text, completed = false) {
         <button class="delete-btn">حذف 🗑️</button>
     `;
 
-    // Toggle completed state
     const span = li.querySelector('.task-text');
     span.addEventListener('click', function() {
         li.classList.toggle('completed');
         saveTasks();
+        updateCounters();
+        applyFilter();
     });
 
-    // Delete task
     const deleteBtn = li.querySelector('.delete-btn');
     deleteBtn.addEventListener('click', function() {
         li.remove();
         saveTasks();
+        updateCounters();
+        applyFilter();
     });
 
     taskList.appendChild(li);
@@ -40,10 +46,47 @@ function addTask() {
 
     createTaskElement(taskText);
     saveTasks();
+    updateCounters();
+    applyFilter();
     taskInput.value = '';
 }
 
-// Save all tasks to localStorage
+// Filter tasks based on selected tab
+function applyFilter() {
+    const allTasks = document.querySelectorAll('.task-item');
+    allTasks.forEach(item => {
+        const isCompleted = item.classList.contains('completed');
+        if (currentFilter === 'all') {
+            item.style.display = 'flex';
+        } else if (currentFilter === 'pending') {
+            item.style.display = isCompleted ? 'none' : 'flex';
+        } else if (currentFilter === 'completed') {
+            item.style.display = isCompleted ? 'flex' : 'none';
+        }
+    });
+}
+
+// Filter buttons click handler
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.getAttribute('data-filter');
+        applyFilter();
+    });
+});
+
+function updateCounters() {
+    const allTasks = document.querySelectorAll('.task-item');
+    const completedTasks = document.querySelectorAll('.task-item.completed');
+    
+    const completed = completedTasks.length;
+    const pending = allTasks.length - completed;
+
+    if (pendingCount) pendingCount.textContent = pending;
+    if (completedCount) completedCount.textContent = completed;
+}
+
 function saveTasks() {
     const tasks = [];
     document.querySelectorAll('.task-item').forEach(item => {
@@ -55,16 +98,16 @@ function saveTasks() {
     localStorage.setItem('user_tasks', JSON.stringify(tasks));
 }
 
-// Load tasks from localStorage
 function loadTasks() {
     const saved = localStorage.getItem('user_tasks');
     if (saved) {
         const tasks = JSON.parse(saved);
         tasks.forEach(task => createTaskElement(task.text, task.completed));
     }
+    updateCounters();
+    applyFilter();
 }
 
-// Event Listeners
 addTaskBtn.addEventListener('click', addTask);
 taskInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') addTask();
