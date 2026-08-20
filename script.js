@@ -1,3 +1,27 @@
+// --- DARK / LIGHT MODE LOGIC ---
+const themeToggleBtn = document.getElementById('themeToggle');
+
+// قراءة الثيم المحفوظ أو الاعتماد على Light كافتراضي
+const savedTheme = localStorage.getItem('user_theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+if (themeToggleBtn) {
+    updateThemeButtonText(savedTheme);
+}
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('user_theme', newTheme);
+        updateThemeButtonText(newTheme);
+    });
+}
+
+function updateThemeButtonText(theme) {
+    themeToggleBtn.textContent = theme === 'dark' ? '☀️ الوضع المضيء' : '🌙 الوضع المظلم';
+}
 const taskInput = document.getElementById('taskInput');
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskList = document.getElementById('taskList');
